@@ -1,7 +1,8 @@
 # README
+## 介绍
+**python编写的,基于requests,pytest为主体框架,utils工具类,支持直接运行,也支持Jenkins**
 
 ## 环境需求
-
 * Python：3.8
 * 已根据requirements.txt安装依赖库
 
