@@ -28,7 +28,14 @@ class TestDemo:
 
     @allure.story("测试用例-demo")
     def test_demo_01(self):
-        resp = {
-            "code": 200
-        }
-        UtilsCheck().check_key_value_base(_json=resp, _key="code", _value=200)
+        req = UtilsRequest()
+        resp = req.post(url="http://xx.xx.xx/xxx", json={
+            "username": "XXX",
+            "password": "XXX"
+        })
+
+        UtilsCheck().check_key_value_base(_json=resp, _key="code", _value="200")
+        UtilsCheck().check_key_value_base(_json=resp, _key="success", _value=False)
+        UtilsCheck().check_key_value_base(_json=resp, _key="message", _value="XXX")
+        UtilsCheck().check_key_value_base(_json=resp, _key="data", _value=[])
+
