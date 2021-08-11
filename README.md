@@ -12,10 +12,6 @@
 * db: 数据库类
 * log: 日志类
 * rd: 随机类
-* UtilsPyTest: pytest运行类
-* UtilsRandom: 随机数类
-* UtilsRedis: 缓存数据库类
-* UtilsReport: 测试报告类
 * request: 封装接口请求类
 * response: 解析接口返回类
 * rsa: rsa密码类
