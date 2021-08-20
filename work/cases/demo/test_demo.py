@@ -8,7 +8,7 @@ import allure
 import pytest
 
 
-@allure.feature("测试模块：Demo)
+@allure.feature("测试模块：Demo")
 class TestDemo:
 
     @classmethod
