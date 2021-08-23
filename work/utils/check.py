@@ -5,6 +5,7 @@
 
 from work.utils import UtilsLog
 from work.utils import UtilsResponse
+from datetime import datetime
 import allure
 import json
 
@@ -102,13 +103,35 @@ class UtilsCheck:
         if _is_desc:
             start = float("inf")
             for x, y in enumerate(_json):
-                assert start > y[_key]
+                assert start >= y[_key]
                 start = y[_key]
         else:
             start = float("-inf")
             for x, y in enumerate(_json):
-                assert start < y[_key]
+                assert start <= y[_key]
                 start = y[_key]
+
+    @allure.step("校验时间返回值排序")
+    def check_key_time_sort(self, _json, _key, _is_desc=True):
+        """
+        校验时间返回值排序
+        :param _json: 返回信息
+        :param _key: 键值
+        :param _is_desc: 是否倒序
+        :return: True或者False
+        """
+        if _is_desc:
+            start = float("inf")
+            for x, y in enumerate(_json):
+                timestamp = datetime.timestamp(datetime.strptime(y[_key], "%Y-%m-%d %H:%M:%S"))
+                assert start >= timestamp
+                start = timestamp
+        else:
+            start = float("-inf")
+            for x, y in enumerate(_json):
+                timestamp = datetime.timestamp(datetime.strptime(y[_key], "%Y-%m-%d %H:%M:%S"))
+                assert start <= timestamp
+                start = timestamp
 
     @allure.step("校验返回值是否存在")
     def check_key_is_extend(self, _json, _key):
