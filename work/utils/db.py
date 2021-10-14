@@ -4,6 +4,7 @@
 # 时间: 2021-06-08
 
 import pymysql
+from urllib import parse
 from sqlalchemy.exc import ProgrammingError, OperationalError
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from sqlalchemy import create_engine
@@ -49,7 +50,7 @@ class UtilsDB:
         db_host = db_json["host"]
         db_port = db_json["port"]
         db_user = db_json["username"]
-        db_pw = db_json["password"]
+        db_pw = parse.quote_plus(db_json["password"])
         db_base = db_json["name"]
 
         db = "postgresql://%s:%s@%s:%s/%s" % (db_user, db_pw, db_host, db_port, db_base)
